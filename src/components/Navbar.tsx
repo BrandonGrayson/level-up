@@ -7,13 +7,17 @@ export default function Navbar() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          marginLeft: "10%",
           marginTop: "30px",
-          marginRight: "10%",
+          width: "100%",
+          backgroundColor: "red",
         }}
       >
-        <Typography sx={{ color: "white" }}>Level Up</Typography>
-        <Typography sx={{ color: "white" }}>Collaborate</Typography>
+        <Typography sx={{ color: "white", marginLeft: "10%" }}>
+          Level Up
+        </Typography>
+        <Typography sx={{ color: "white", marginRight: "10%" }}>
+          Collaborate
+        </Typography>
       </Box>
     </>
   );

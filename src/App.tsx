@@ -10,7 +10,7 @@ function App() {
       <Grid item xs={12}>
         <Navbar />
       </Grid>
-      <Collaborate />
+      {/* <Collaborate /> */}
       {/* <Hero /> */}
     </Grid>
   );

@@ -12,7 +12,13 @@ export default function Hero() {
         </p>
         <p className="hero-sub-txt2">and collaborating with other developers</p>
         <Box
-          sx={{ marginTop: "20px", display: "flex", alignContent: "center" }}
+          sx={{
+            marginTop: "20px",
+            display: "flex",
+            alignContent: "center",
+            width: "100%",
+            flexDirection: "column",
+          }}
         >
           <TextField
             id="outlined-basic"
@@ -21,7 +27,7 @@ export default function Hero() {
             color="secondary"
             sx={{ backgroundColor: "white", width: "300px" }}
           />
-          <Button sx={{ marginLeft: "15px" }} variant="contained">
+          <Button className="action" variant="contained">
             Search Projects
           </Button>
         </Box>

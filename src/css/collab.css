@@ -1,6 +1,6 @@
 .collab-box {
-    margin-left: 14%;
-    margin-top: 20%;
+    /* margin-left: 14%;
+    margin-top: 20%; */
 }
 
 .collab-txt {
@@ -8,4 +8,10 @@
     font-weight: 900;
     color: white;
     font-size: 60px;
+}
+
+@media (max-width: 480px) {
+    .collab-txt {
+        font-size: 30px;
+    }
 }
