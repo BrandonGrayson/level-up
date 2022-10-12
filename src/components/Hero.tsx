@@ -1,0 +1,17 @@
+import { Grid, Box } from "@mui/material";
+import "../css/Hero.css";
+
+export default function Hero() {
+  return (
+    <Grid item xs={12}>
+      <div className="hero-box">
+        <p className="hero-txt">Let's grow from here,</p>
+        <p className="hero-txt">together</p>
+        <p className="hero-sub-txt">
+          The developer platform for finding projects,
+        </p>
+        <p className="hero-sub-txt2">and collaborating with other developers</p>
+      </div>
+    </Grid>
+  );
+}

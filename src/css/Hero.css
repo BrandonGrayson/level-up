@@ -1,0 +1,51 @@
+.hero-box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    margin-top: 15%;
+    /* align-items: center; */
+}
+
+.hero-txt {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: white;
+    font-size: 60px;
+}
+
+.hero-sub-txt {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: white;
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.hero-sub-txt2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: white;
+    font-size: 30px;
+}
+
+
+@media (max-width: 480px) {
+    .hero-box {
+        margin-top: 40%;
+        align-items: center;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .hero-txt {
+        font-size: 30px;
+    }
+
+    .hero-sub-txt {
+        font-size: 15px;
+    }
+
+    .hero-sub-txt2 {
+        font-size: 15px;
+    }
+}
