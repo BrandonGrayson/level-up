@@ -28,6 +28,20 @@
     font-size: 30px;
 }
 
+.action-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.action-box Button {
+    margin-left: 10px;
+}
+
+#search-bar {
+    width: 400px;
+}
 
 @media (max-width: 480px) {
     .hero-box {
@@ -53,11 +67,17 @@
     }
 
     .hero-box Button {
-        width: 80%;
+        width: 100%;
         margin-top: 20px;
     }
 
     .action-box {
         width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .action-box Button {
+        margin-left: 0px;
     }
 }

@@ -14,15 +14,14 @@ export default function Hero() {
         <p className="hero-sub-txt2">and collaborating with other developers</p>
         <div className="action-box">
           <TextField
-            id="outlined-basic"
+            id="search-bar"
             label="Search"
             variant="outlined"
             color="secondary"
-            fullWidth={true}
             sx={{ backgroundColor: "white" }}
           />
+          <Button variant="contained">Search Projects</Button>
         </div>
-        <Button variant="contained">Search Projects</Button>
       </div>
     </Grid>
   );
