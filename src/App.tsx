@@ -11,7 +11,7 @@ function App() {
         <Navbar />
       </Grid>
       {/* <Collaborate /> */}
-      {/* <Hero /> */}
+      <Hero />
     </Grid>
   );
 }

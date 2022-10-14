@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    text-align: center;
 }
 
 .hero-txt {
@@ -10,6 +10,7 @@
     font-weight: 900;
     color: white;
     font-size: 60px;
+    margin-top: 200px;
 }
 
 .hero-sub-txt {
@@ -30,12 +31,16 @@
 
 @media (max-width: 480px) {
     .hero-box {
-        /* margin-top: 40%;
-        align-items: center; */
+        display: flex;
+        width: 100%;
+        max-width: 480px;
+        align-items: center;
     }
 
     .hero-txt {
         font-size: 30px;
+        margin-top: 200px;
+        justify-content: center;
     }
 
     .hero-sub-txt {
@@ -44,5 +49,15 @@
 
     .hero-sub-txt2 {
         font-size: 15px;
+        margin-bottom: 30px
+    }
+
+    .hero-box Button {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .action-box {
+        width: 80%;
     }
 }

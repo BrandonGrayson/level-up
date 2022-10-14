@@ -9,7 +9,6 @@ export default function Navbar() {
           justifyContent: "space-between",
           marginTop: "30px",
           width: "100%",
-          backgroundColor: "red",
         }}
       >
         <Typography sx={{ color: "white", marginLeft: "10%" }}>
