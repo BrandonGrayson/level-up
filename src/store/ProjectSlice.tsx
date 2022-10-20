@@ -20,6 +20,7 @@ export const projectSlice = createSlice({
   initialState,
   reducers: {
     projectAdded(state, action) {
+      console.log(action.payload);
       state.projects.push(action.payload);
     },
   },
