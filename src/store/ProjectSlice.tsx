@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 interface Project {
   title: string;
@@ -24,7 +24,28 @@ export const projectSlice = createSlice({
       state.projects.push(action.payload);
     },
   },
+  extraReducers(builder) {
+    builder.addCase(addNewProject.fulfilled, (state, action) => {
+      console.log("state", state);
+      console.log("action payload", action.payload);
+      //   state.projects.push(action.payload)
+    });
+  },
 });
+
+export const addNewProject = createAsyncThunk(
+  "projects/addNewProject",
+  async (initialProject) => {
+    const response = await fetch("http://127.0.0.1:8000/projects", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      body: JSON.stringify(initialProject),
+    });
+
+    return response;
+  }
+);
 
 export const { projectAdded } = projectSlice.actions;
 

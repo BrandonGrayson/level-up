@@ -11,6 +11,7 @@ import {
 import { useDispatch } from "react-redux";
 import { projectAdded } from "../store/ProjectSlice";
 import CloseIcon from "@mui/icons-material/Close";
+import { addNewProject } from "../store/ProjectSlice";
 
 export default function AddProjectDialog({
   open,
@@ -24,9 +25,21 @@ export default function AddProjectDialog({
   const [position, setPosition] = useState("");
   const [openPositions, setOpenPositions] = useState<string[]>([]);
   const [linkToRepo, setLinkToRepo] = useState("");
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch<AppDispatch>();
   const handleClose = () => {
     setOpen(false);
+  };
+  // {title, description, position, openPositions, linkToRepo}
+  const saveProject = async () => {
+    try {
+      // await dispatch(addNewProject()).unwrap()
+      setTitle("");
+      setDescription("");
+      setLinkToRepo("");
+      setPosition("");
+      setOpenPositions([]);
+      handleClose();
+    } catch {}
   };
 
   return (
@@ -115,26 +128,7 @@ export default function AddProjectDialog({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button
-          onClick={() => {
-            dispatch(
-              projectAdded({
-                title,
-                description,
-                linkToRepo,
-                openPositions,
-              })
-            );
-            setTitle("");
-            setDescription("");
-            setLinkToRepo("");
-            setPosition("");
-            setOpenPositions([]);
-            handleClose();
-          }}
-        >
-          Submit
-        </Button>
+        <Button onClick={saveProject}>Submit</Button>
       </DialogActions>
     </Dialog>
   );
