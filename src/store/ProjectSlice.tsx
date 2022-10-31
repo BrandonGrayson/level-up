@@ -47,6 +47,8 @@ export const addNewProject = createAsyncThunk(
   }
 );
 
+console.log("Project Slice", projectSlice);
+
 export const { projectAdded } = projectSlice.actions;
 
 export default projectSlice.reducer;
