@@ -8,10 +8,9 @@ import {
   Typography,
   Button,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { projectAdded } from "../store/ProjectSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import { addNewProject } from "../store/ProjectSlice";
+import { useAppDispatch } from "../hooks/hooks";
 
 export default function AddProjectDialog({
   open,
@@ -29,17 +28,23 @@ export default function AddProjectDialog({
   const handleClose = () => {
     setOpen(false);
   };
+
+  const dispatch = useAppDispatch();
   // {title, description, position, openPositions, linkToRepo}
   const saveProject = async () => {
     try {
-      // await dispatch(addNewProject()).unwrap()
+      await dispatch(
+        addNewProject({ title, description, openPositions, linkToRepo })
+      ).unwrap();
       setTitle("");
       setDescription("");
       setLinkToRepo("");
       setPosition("");
       setOpenPositions([]);
       handleClose();
-    } catch {}
+    } catch (error) {
+      console.error("Failed to save new Project", error);
+    }
   };
 
   return (

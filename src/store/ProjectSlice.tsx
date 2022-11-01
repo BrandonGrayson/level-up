@@ -3,8 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 interface Project {
   title: string;
   description: string;
-  open_positions: string[];
-  link_to_repo: string;
+  openPositions: string[];
+  linkToRepo: string;
 }
 
 interface ProjectState {
@@ -35,7 +35,7 @@ export const projectSlice = createSlice({
 
 export const addNewProject = createAsyncThunk(
   "projects/addNewProject",
-  async (initialProject) => {
+  async (initialProject: Project) => {
     const response = await fetch("http://127.0.0.1:8000/projects", {
       method: "POST",
       mode: "cors",
