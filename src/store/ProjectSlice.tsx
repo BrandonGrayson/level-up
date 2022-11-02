@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "./store";
 
-interface Project {
+export interface Project {
   title: string;
   description: string;
   openPositions: string[];
@@ -12,7 +13,14 @@ interface ProjectState {
 }
 
 const initialState: ProjectState = {
-  projects: [],
+  projects: [
+    {
+      title: "Espn",
+      description: "Sports Media App",
+      openPositions: ["React"],
+      linkToRepo: "Espn Link",
+    },
+  ],
 };
 
 export const projectSlice = createSlice({
@@ -36,6 +44,7 @@ export const projectSlice = createSlice({
 export const addNewProject = createAsyncThunk(
   "projects/addNewProject",
   async (initialProject: Project) => {
+    console.log("Initial Project", initialProject);
     const response = await fetch("http://127.0.0.1:8000/projects", {
       method: "POST",
       mode: "cors",
@@ -43,6 +52,7 @@ export const addNewProject = createAsyncThunk(
       body: JSON.stringify(initialProject),
     });
 
+    console.log(response);
     return response;
   }
 );
@@ -52,3 +62,5 @@ console.log("Project Slice", projectSlice);
 export const { projectAdded } = projectSlice.actions;
 
 export default projectSlice.reducer;
+
+export const selectAllProjects = (state: RootState) => state.projects.projects;

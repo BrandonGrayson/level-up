@@ -24,13 +24,13 @@ export default function AddProjectDialog({
   const [position, setPosition] = useState("");
   const [openPositions, setOpenPositions] = useState<string[]>([]);
   const [linkToRepo, setLinkToRepo] = useState("");
-  //   const dispatch = useDispatch<AppDispatch>();
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const dispatch = useAppDispatch();
-  // {title, description, position, openPositions, linkToRepo}
+
   const saveProject = async () => {
     try {
       await dispatch(

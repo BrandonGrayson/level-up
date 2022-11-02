@@ -22,6 +22,11 @@
 #add-proj {
     width: 20%;
 }
+
+.project-info {
+    color: white;
+}
+
 @media (max-width: 480px) {
     .collab-box {
         display: flex;
