@@ -3,7 +3,6 @@ import "../css/collab.css";
 import { useState } from "react";
 import AddProjectDialog from "../components/AddProjectDialog";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
 import { Project } from "../store/ProjectSlice";
 import { selectAllProjects } from "../store/ProjectSlice";
 

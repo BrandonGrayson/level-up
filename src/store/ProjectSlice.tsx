@@ -10,17 +10,14 @@ export interface Project {
 
 interface ProjectState {
   projects: Project[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 const initialState: ProjectState = {
-  projects: [
-    {
-      title: "Espn",
-      description: "Sports Media App",
-      openPositions: ["React"],
-      linkToRepo: "Espn Link",
-    },
-  ],
+  projects: [],
+  status: "idle",
+  error: null,
 };
 
 export const projectSlice = createSlice({
