@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
 export interface Project {
+  id: number;
   title: string;
   description: string;
   openPositions: string[];
@@ -9,9 +10,9 @@ export interface Project {
 }
 
 interface ProjectState {
-  projects: Project[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  projects: Project[];
 }
 
 const initialState: ProjectState = {
@@ -30,13 +31,46 @@ export const projectSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(addNewProject.fulfilled, (state, action) => {
-      console.log("state", state);
-      console.log("action payload", action.payload);
-      //   state.projects.push(action.payload)
-    });
+    builder
+      .addCase(fetchProjects.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchProjects.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        console.log("Whats being added to state", action.payload);
+        state.projects = state.projects.concat(action.payload);
+      })
+      .addCase(fetchProjects.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message!;
+      });
   },
+  //   extraReducers(builder) {
+  //     builder.addCase(addNewProject.fulfilled, (state, action) => {
+  //       console.log("state", state);
+  //       console.log("action payload", action.payload);
+  //       //   state.projects.push(action.payload)
+  //     });
+  //   },
 });
+
+export const fetchProjects = createAsyncThunk(
+  "projects/getAllProjects",
+  async () => {
+    const response = await fetch("http://127.0.0.1:8000/projects", {
+      method: "GET",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log("data from response", data.data);
+    return data.data;
+  }
+);
 
 export const addNewProject = createAsyncThunk(
   "projects/addNewProject",
@@ -46,11 +80,15 @@ export const addNewProject = createAsyncThunk(
       method: "POST",
       mode: "cors",
       cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(initialProject),
     });
 
-    console.log(response);
-    return response;
+    console.log(response.json());
+    return response.json();
   }
 );
 

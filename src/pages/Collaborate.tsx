@@ -1,22 +1,37 @@
 import { Grid, Button } from "@mui/material";
 import "../css/collab.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddProjectDialog from "../components/AddProjectDialog";
 import { useSelector } from "react-redux";
-import { Project } from "../store/ProjectSlice";
+import { fetchProjects, Project } from "../store/ProjectSlice";
 import { selectAllProjects } from "../store/ProjectSlice";
+import { RootState } from "../store/store";
+import { useAppDispatch } from "../hooks/hooks";
 
 export default function Collaborate() {
   const [open, setOpen] = useState(false);
-  const projectList = useSelector(selectAllProjects);
 
-  console.log("state from Collaborate useSelector");
+  const dispatch = useAppDispatch();
+  const projectList = useSelector(selectAllProjects);
+  const projectStatus = useSelector(
+    (state: RootState) => state.projects.status
+  );
+
+  useEffect(() => {
+    if (projectStatus === "idle") {
+      console.log("dispatching fetch post");
+      dispatch(fetchProjects());
+      console.log("fetch Post Dispatched");
+    }
+    console.log("End of Project Status if Statement ");
+  }, [projectStatus, dispatch]);
 
   const renderedProjects = projectList.map((project: Project, index) => (
     <div key={index}>
       <p className="project-info">{project.title}</p>
     </div>
   ));
+
   return (
     <Grid item xs={12}>
       <div className="collab-box">
