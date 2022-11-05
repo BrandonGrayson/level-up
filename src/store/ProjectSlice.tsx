@@ -25,10 +25,11 @@ export const projectSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
-    projectAdded(state, action) {
-      console.log(action.payload);
-      state.projects.push(action.payload);
-    },
+    // projectAdded(state, action) {
+    //   console.log("project added fired");
+    //   console.log(action.payload);
+    //   state.projects.push(action.payload);
+    // },
   },
   extraReducers(builder) {
     builder
@@ -39,6 +40,7 @@ export const projectSlice = createSlice({
         state.status = "succeeded";
         console.log("Whats being added to state", action.payload);
         state.projects = state.projects.concat(action.payload);
+        // return action.payload;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.status = "failed";
@@ -94,7 +96,7 @@ export const addNewProject = createAsyncThunk(
 
 console.log("Project Slice", projectSlice);
 
-export const { projectAdded } = projectSlice.actions;
+// export const { projectAdded } = projectSlice.actions;
 
 export default projectSlice.reducer;
 

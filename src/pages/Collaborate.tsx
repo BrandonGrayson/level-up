@@ -1,6 +1,6 @@
 import { Grid, Button } from "@mui/material";
 import "../css/collab.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AddProjectDialog from "../components/AddProjectDialog";
 import { useSelector } from "react-redux";
 import { fetchProjects, Project } from "../store/ProjectSlice";
@@ -10,6 +10,7 @@ import { useAppDispatch } from "../hooks/hooks";
 
 export default function Collaborate() {
   const [open, setOpen] = useState(false);
+  const dataFetchedRef = useRef(false);
 
   const dispatch = useAppDispatch();
   const projectList = useSelector(selectAllProjects);
@@ -18,13 +19,13 @@ export default function Collaborate() {
   );
 
   useEffect(() => {
-    if (projectStatus === "idle") {
-      console.log("dispatching fetch post");
+    if (projectStatus === "idle" && dataFetchedRef.current === false) {
       dispatch(fetchProjects());
-      console.log("fetch Post Dispatched");
+      dataFetchedRef.current = true;
     }
-    console.log("End of Project Status if Statement ");
   }, [projectStatus, dispatch]);
+
+  console.log("project List", projectList);
 
   const renderedProjects = projectList.map((project: Project, index) => (
     <div key={index}>
