@@ -50,9 +50,10 @@ export default function Collaborate() {
       <div
         style={{
           display: "flex",
-          backgroundColor: "red",
           justifyContent: "center",
           marginTop: "20px",
+          color: "white",
+          fontFamily: "Playfair Display",
         }}
       >
         <h3>Projects</h3>

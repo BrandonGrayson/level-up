@@ -9,6 +9,13 @@ export interface Project {
   linkToRepo: string;
 }
 
+export interface NewProject {
+  title: string;
+  description: string;
+  openPositions: string[];
+  linkToRepo: string;
+}
+
 interface ProjectState {
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
@@ -47,13 +54,13 @@ export const projectSlice = createSlice({
         state.error = action.error.message!;
       });
   },
-  //   extraReducers(builder) {
-  //     builder.addCase(addNewProject.fulfilled, (state, action) => {
-  //       console.log("state", state);
-  //       console.log("action payload", action.payload);
-  //       //   state.projects.push(action.payload)
-  //     });
-  //   },
+  // extraReducers(builder) {
+  //   builder.addCase(addNewProject.fulfilled, (state, action) => {
+  //     console.log("state", state);
+  //     console.log("action payload", action.payload);
+  //     //   state.projects.push(action.payload)
+  //   });
+  // },
 });
 
 export const fetchProjects = createAsyncThunk(
@@ -76,7 +83,7 @@ export const fetchProjects = createAsyncThunk(
 
 export const addNewProject = createAsyncThunk(
   "projects/addNewProject",
-  async (initialProject: Project) => {
+  async (initialProject: NewProject) => {
     console.log("Initial Project", initialProject);
     const response = await fetch("http://127.0.0.1:8000/projects", {
       method: "POST",
@@ -89,8 +96,8 @@ export const addNewProject = createAsyncThunk(
       body: JSON.stringify(initialProject),
     });
 
-    console.log(response.json());
-    return response.json();
+    const data = response.json();
+    console.log("New Proj Data", data);
   }
 );
 

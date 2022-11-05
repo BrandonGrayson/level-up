@@ -32,19 +32,19 @@ export default function AddProjectDialog({
   const dispatch = useAppDispatch();
 
   const saveProject = async () => {
-    // try {
-    //   await dispatch(
-    //     addNewProject({ title, description, openPositions, linkToRepo })
-    //   ).unwrap();
-    //   setTitle("");
-    //   setDescription("");
-    //   setLinkToRepo("");
-    //   setPosition("");
-    //   setOpenPositions([]);
-    //   handleClose();
-    // } catch (error) {
-    //   console.error("Failed to save new Project", error);
-    // }
+    try {
+      await dispatch(
+        addNewProject({ title, description, openPositions, linkToRepo })
+      ).unwrap();
+      setTitle("");
+      setDescription("");
+      setLinkToRepo("");
+      setPosition("");
+      setOpenPositions([]);
+      handleClose();
+    } catch (error) {
+      console.error("Failed to save new Project", error);
+    }
   };
 
   return (
