@@ -22,8 +22,8 @@ export default function AddProjectDialog({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [position, setPosition] = useState("");
-  const [openPositions, setOpenPositions] = useState<string[]>([]);
-  const [linkToRepo, setLinkToRepo] = useState("");
+  const [open_positions, setOpenPositions] = useState<string[]>([]);
+  const [link_to_repo, setLinkToRepo] = useState("");
 
   const handleClose = () => {
     setOpen(false);
@@ -34,7 +34,7 @@ export default function AddProjectDialog({
   const saveProject = async () => {
     try {
       await dispatch(
-        addNewProject({ title, description, openPositions, linkToRepo })
+        addNewProject({ title, description, open_positions, link_to_repo })
       ).unwrap();
       setTitle("");
       setDescription("");
@@ -76,7 +76,7 @@ export default function AddProjectDialog({
             className="create-project-name"
             name="Repository Link"
             onChange={(e) => setLinkToRepo(e.target.value)}
-            value={linkToRepo}
+            value={link_to_repo}
             placeholder="Link to Repo"
           />
           <Box
@@ -101,7 +101,7 @@ export default function AddProjectDialog({
             <Button
               variant="contained"
               onClick={() => {
-                setOpenPositions([...openPositions, position]);
+                setOpenPositions([...open_positions, position]);
                 setPosition("");
               }}
               sx={{ width: "100px", marginTop: "10px" }}
@@ -111,14 +111,14 @@ export default function AddProjectDialog({
           </Box>
         </Box>
         <Box sx={{ display: "flex", flexDirection: "row" }}>
-          {openPositions.map((openPosition, index) => (
+          {open_positions.map((openPosition, index) => (
             <Box key={index} sx={{ display: "flex", flexDirection: "row" }}>
               <Button>
                 <>
                   <CloseIcon
                     onClick={() =>
                       setOpenPositions(
-                        openPositions.filter(
+                        open_positions.filter(
                           (position) => position !== openPosition
                         )
                       )

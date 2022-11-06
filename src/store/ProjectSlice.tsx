@@ -12,8 +12,8 @@ export interface Project {
 export interface NewProject {
   title: string;
   description: string;
-  openPositions: string[];
-  linkToRepo: string;
+  open_positions: string[];
+  link_to_repo: string;
 }
 
 interface ProjectState {
@@ -92,6 +92,7 @@ export const addNewProject = createAsyncThunk(
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        // "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(initialProject),
     });
