@@ -1,4 +1,11 @@
-import { Grid, Button } from "@mui/material";
+import {
+  Grid,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+} from "@mui/material";
 import "../css/collab.css";
 import { useState, useEffect, useRef } from "react";
 import AddProjectDialog from "../components/AddProjectDialog";
@@ -28,9 +35,19 @@ export default function Collaborate() {
   console.log("project List", projectList);
 
   const renderedProjects = projectList.map((project: Project, index) => (
-    <div key={index}>
-      <p className="project-info">{project.title}</p>
-    </div>
+    // <div key={index}>
+    //   <p className="project-info">{project.title}</p>
+    // </div>
+    <Card sx={{ width: "400px", backgroundColor: "#eee" }}>
+      <CardContent>
+        <Typography variant="h5">{project.title}</Typography>
+        <Typography variant="body2">{project.description}</Typography>
+        <Typography variant="body2">{project.link_to_repo}</Typography>
+        {project.open_positions.map((position) => (
+          <Typography> {position}</Typography>
+        ))}
+      </CardContent>
+    </Card>
   ));
 
   return (

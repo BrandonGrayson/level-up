@@ -5,8 +5,8 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  openPositions: string[];
-  linkToRepo: string;
+  open_positions: string[];
+  link_to_repo: string;
 }
 
 export interface NewProject {
