@@ -35,47 +35,65 @@ export default function Collaborate() {
   console.log("project List", projectList);
 
   const renderedProjects = projectList.map((project: Project, index) => (
-    // <div key={index}>
-    //   <p className="project-info">{project.title}</p>
-    // </div>
-    <Card sx={{ width: "400px", backgroundColor: "#eee" }}>
+    <Card
+      sx={{
+        backgroundColor: "#eee",
+        marginTop: "10px",
+      }}
+      key={index}
+      id="card"
+    >
       <CardContent>
-        <Typography variant="h5">{project.title}</Typography>
-        <Typography variant="body2">{project.description}</Typography>
-        <Typography variant="body2">{project.link_to_repo}</Typography>
-        {project.open_positions.map((position) => (
-          <Typography> {position}</Typography>
-        ))}
+        <Typography variant="h5">Title: {project.title}</Typography>
+        <Typography variant="body2">
+          Description: {project.description}
+        </Typography>
+        <Typography variant="body2">
+          Repo Link: {project.link_to_repo}
+        </Typography>
+        <Typography sx={{ display: "flex", flexDirection: "row" }}>
+          Open Positions:
+          {/* {project.open_positions.map((position) => (
+            {position}
+          ))} */}
+        </Typography>
       </CardContent>
     </Card>
   ));
 
   return (
-    <Grid item xs={12}>
-      <div className="collab-box">
-        <p className="collab-txt">Add a project to collab with other dev's.</p>
-        <Button
-          onClick={() => setOpen(true)}
-          id="add-proj"
-          sx={{ marginTop: "20px" }}
-          variant="contained"
+    <>
+      <Grid item xs={12}>
+        <div className="collab-box">
+          <p className="collab-txt">
+            Add a project to collab with other dev's.
+          </p>
+          <Button
+            onClick={() => setOpen(true)}
+            id="add-proj"
+            sx={{ marginTop: "20px" }}
+            variant="contained"
+          >
+            Add Project
+          </Button>
+          <AddProjectDialog open={open} setOpen={setOpen} />
+        </div>
+      </Grid>
+      <Grid item xs={12}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+            color: "white",
+            fontFamily: "Playfair Display",
+          }}
         >
-          Add Project
-        </Button>
-        <AddProjectDialog open={open} setOpen={setOpen} />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "20px",
-          color: "white",
-          fontFamily: "Playfair Display",
-        }}
-      >
-        <h3>Projects</h3>
-      </div>
-      {renderedProjects}
-    </Grid>
+          <h3>Projects</h3>
+        </div>
+
+        <div className="project-list">{renderedProjects}</div>
+      </Grid>
+    </>
   );
 }
