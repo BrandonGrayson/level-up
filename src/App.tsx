@@ -1,8 +1,9 @@
 import "./App.css";
 import { Grid } from "@mui/material";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+// import Hero from "./components/Hero";
 import Collaborate from "./pages/Collaborate";
+import LoginDialog from "./components/LoginDialog";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Grid item xs={12}>
         <Navbar />
       </Grid>
-      <Collaborate />
+      <LoginDialog />
+      {/* <Collaborate /> */}
       {/* <Hero /> */}
     </Grid>
   );

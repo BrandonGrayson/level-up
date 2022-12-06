@@ -1,11 +1,4 @@
-import {
-  Grid,
-  Button,
-  Card,
-  CardContent,
-  CardActions,
-  Typography,
-} from "@mui/material";
+import { Grid, Button, Card, CardContent, Typography } from "@mui/material";
 import "../css/collab.css";
 import { useState, useEffect, useRef } from "react";
 import AddProjectDialog from "../components/AddProjectDialog";
@@ -35,30 +28,35 @@ export default function Collaborate() {
   console.log("project List", projectList);
 
   const renderedProjects = projectList.map((project: Project, index) => (
-    <Card
-      sx={{
-        backgroundColor: "#eee",
-        marginTop: "10px",
-      }}
-      key={index}
-      id="card"
-    >
-      <CardContent>
-        <Typography variant="h5">Title: {project.title}</Typography>
-        <Typography variant="body2">
-          Description: {project.description}
-        </Typography>
-        <Typography variant="body2">
-          Repo Link: {project.link_to_repo}
-        </Typography>
-        <Typography sx={{ display: "flex", flexDirection: "row" }}>
-          Open Positions:
-          {/* {project.open_positions.map((position) => (
-            {position}
-          ))} */}
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Card
+        sx={{
+          backgroundColor: "#eee",
+          marginTop: "10px",
+          marginRight: "10px",
+        }}
+        key={index}
+        id="card"
+      >
+        <CardContent>
+          <Typography variant="h5">Title: {project.title}</Typography>
+          <Typography variant="body2">
+            Description: {project.description}
+          </Typography>
+          <Typography variant="body2">
+            Repo Link: {project.link_to_repo}
+          </Typography>
+          <Typography>Open Positions:</Typography>
+          <div className="open-positions-list">
+            {project.open_positions.map((position, index) => (
+              <Typography sx={{ marginRight: "10px" }} key={index}>
+                {position}
+              </Typography>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </>
   ));
 
   return (
