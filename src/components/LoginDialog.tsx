@@ -1,7 +1,27 @@
 import { Grid, Box, Typography, Input, Button } from "@mui/material";
+import { useState } from "react";
 import "../css/loginDialog.css";
 
 export default function LoginDialog() {
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    const response = await fetch("http://127.0.0.1:8000/login", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+  };
   return (
     <>
       <Grid item xs={12}>
@@ -31,6 +51,7 @@ export default function LoginDialog() {
               marginLeft: "auto",
               marginRight: "auto",
             }}
+            onChange={(event) => setUserName(event.target.value)}
           />
           <Typography
             sx={{
@@ -49,14 +70,8 @@ export default function LoginDialog() {
               marginLeft: "auto",
               marginRight: "auto",
             }}
+            onChange={(event) => setPassword(event.target.value)}
           />
-          {/* <TextField
-            sx={{ backgroundColor: "white", width: "80%" }}
-            color="success"
-            label="email"
-            variant="filled"
-          />
-          <TextField label="password" variant="outlined" /> */}
           <Button
             variant="contained"
             color="primary"
@@ -66,6 +81,7 @@ export default function LoginDialog() {
               marginRight: "auto",
               marginLeft: "auto",
             }}
+            onClick={handleLogin}
           >
             Sign In
           </Button>

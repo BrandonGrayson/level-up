@@ -12,8 +12,6 @@ function App() {
         <Navbar />
       </Grid>
       <LoginDialog />
-      {/* <Collaborate /> */}
-      {/* <Hero /> */}
     </Grid>
   );
 }
