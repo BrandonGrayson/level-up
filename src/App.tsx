@@ -1,8 +1,6 @@
 import "./App.css";
 import { Grid } from "@mui/material";
 import Navbar from "./components/Navbar";
-// import Hero from "./components/Hero";
-import Collaborate from "./pages/Collaborate";
 import LoginDialog from "./components/LoginDialog";
 
 function App() {

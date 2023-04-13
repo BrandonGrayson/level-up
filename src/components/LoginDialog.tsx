@@ -20,6 +20,9 @@ export default function LoginDialog() {
 
     const data = await response.json();
 
+    if (data.access_token) {
+    }
+
     console.log(data);
   };
   return (
